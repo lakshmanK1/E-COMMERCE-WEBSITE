@@ -1,0 +1,12 @@
+.BannerHeader{
+    text-align: center;
+    margin-top: -55px;
+    padding-bottom: 10px;
+    background: #777;
+    color: white;
+}
+
+.BannerHeader h1{
+    padding: 20px;
+    font-size: 100px;
+}

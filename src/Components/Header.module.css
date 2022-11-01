@@ -1,0 +1,33 @@
+.header{
+    text-align: center;
+    margin: 0;
+    padding: 0px;
+    padding-bottom: 30px;
+    background: #777;
+    color: white;
+}
+
+.headerLinks
+{
+    display: flex;
+    padding: 10px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    font-weight: 200;
+    justify-content: center;
+    list-style-type: none;
+    border-bottom: 0.1rem solid white;
+    position: fixed;
+    top: 0%;
+    background: black;
+    width: 100%;
+    z-index: 1;
+}
+
+.header a{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 2rem;
+}
