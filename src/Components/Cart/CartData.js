@@ -2,6 +2,7 @@ import React ,{useContext}from 'react'
 import styles from './CartData.module.css'
 import { Container, Row, Col, Button } from "reactstrap";
 import {CartContext} from './Cart';
+import Items from './Items';
 
 
 // const cartElements = [
@@ -27,7 +28,7 @@ import {CartContext} from './Cart';
 //     },
 //   ];
 function CartData(props) {
-    const DisplayItems = useContext(CartContext);
+    const {DisplayItems} = useContext(CartContext);
     const styleBtn = {
         'marginLeft': '72%',
         'height': '40px',
@@ -53,26 +54,25 @@ function CartData(props) {
             </Col>
           </Row>
           {DisplayItems.map((items) => {
-            return (
-              <Container style={{ marginTop: "20px" }}>
-                <Row>
-                  <Col xs="4">
-                    <Col xs="4">
-                      <img className={styles.cartImages} src={items.imageUrl} />
-                    </Col>
-                    <Col xs='4' className={styles.cartTitle}>{items.title}</Col>
-                  </Col>
+            return <Items key={items.id} {...items}/>
+            //   <Container style={{ marginTop: "20px" }}>
+            //     <Row>
+            //       <Col xs="4">
+            //         <Col xs="4">
+            //           <img className={styles.cartImages} src={items.imageUrl} />
+            //         </Col>
+            //         <Col xs='4' className={styles.cartTitle}>{items.title}</Col>
+            //       </Col>
                   
     
-                  <Col xs="4">${items.price} </Col>
+            //       <Col xs="4">${items.price} </Col>
     
-                  <Col xs="4"><input className={styles.cartInput} type='number' value={items.quantity}/></Col>
-                  <Col><button className={styles.Button}>REMOVE</button></Col>
-                  <hr/>
-                </Row>
+            //       <Col xs="4"><input className={styles.cartInput} type='number' value={items.quantity}/></Col>
+            //       <Col><button className={styles.Button} onClick={()=>removeItem(id)}>REMOVE</button></Col>
+            //       <hr/>
+            //     </Row>
     
-              </Container>
-            );
+            //   </Container>
           })}
           <h2 className={styles.cartHeading}>Total Amount: 750</h2>
           <button className={styles.PurchaseBtn}>Purchase</button>

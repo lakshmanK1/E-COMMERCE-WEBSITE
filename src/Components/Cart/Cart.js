@@ -1,10 +1,17 @@
-import React, { createContext } from "react";
+import React, { createContext, useReducer } from "react";
 // import { Container, Row, Col, Button } from "reactstrap";
 import styles from './Cart.module.css'
 import CartData from "./CartData";
 import { CartProducts } from "./Products";
+import { reducer } from "./Reducer";
 
 export const CartContext = createContext(CartProducts);
+
+const initialState = {
+    DisplayItems: CartProducts,
+    totalQuantity:0,
+    totalPrice:0
+}
 
 // const cartElements = [
 //   {
@@ -30,8 +37,18 @@ export const CartContext = createContext(CartProducts);
 // ];
 
 const Cart = (props) => {
+
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const removeItem = (id) => {
+        return dispatch({
+            type:"REMOVE",
+            payload:id
+        });
+    }
+    
     return(
-        <CartContext.Provider value={CartProducts}>
+        <CartContext.Provider value={{...state, removeItem}}>
             <CartData Notshow={props.onHideCart}/>
         </CartContext.Provider>
         
