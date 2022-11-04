@@ -1,5 +1,4 @@
 import React,{useContext} from 'react'
-import { CartContext } from './Cart'
 import styles from './CartData.module.css'
 import { Container, Row, Col, Button } from "reactstrap";
 

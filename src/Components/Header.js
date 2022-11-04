@@ -9,7 +9,7 @@ function Header(props) {
             <a href='#'>Home</a>
             <a href='#'>Store</a>
             <a href='#'>About</a>
-            <CartButton onShowCart={props.onShowCart}/>
+            <CartButton onShowCartData={props.onShowCart}/>
         </div>
         
     </div>

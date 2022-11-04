@@ -5,7 +5,7 @@ function CartButton(props) {
   return (
     
     <div >
-        <a href='#' className={classes.cartStyle} onClick={props.onShowCart}>
+        <a href='#' className={classes.cartStyle} onClick={props.onShowCartData}>
         <span>cart</span>
         <span className={classes.CartSpan}>0</span>
         </a>

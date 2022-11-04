@@ -7,8 +7,11 @@ import MusicBanner from './Components/Re-usable/MusicBanner';
 import Merchandise from './Components/Layout/Merchandise';
 import MainFooter from './Components/Footer/MainFooter';
 import Cart from './Components/Cart/Cart';
+import CartContextProvider from './Components/Store/CartContextProvider';
+
 function App() {
   const [cart, setCart] = useState(false);
+
   const ShowCart = () => {
     setCart(true);
   }
@@ -17,7 +20,7 @@ function App() {
     setCart(false);
   }
   return (
-    <div>
+    <CartContextProvider>
       <Header onShowCart={ShowCart}/>
       <Banner/>
       <MusicBanner text='MUSIC'/>
@@ -27,7 +30,7 @@ function App() {
       <MainFooter/>
       {cart && <Cart onHideCart={hideCart}/>}
 
-    </div>
+    </CartContextProvider>
   );
 }
 
