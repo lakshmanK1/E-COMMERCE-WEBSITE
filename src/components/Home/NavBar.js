@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components';
+import { CartContext } from '../Store/Context';
 
 const Container = styled.div`display: flex; padding: 25px;font-family: sans-serif;
 font-size: 15px; font-weight: 200; justify-content: center;
@@ -27,7 +28,8 @@ top: -5px;
 right:-15px;`;
 
 
-function NavBar() {
+function NavBar(props) {
+    const {state:{cart}} = useContext(CartContext)
   return (
     <Container>
             <HeaderLinks>
@@ -36,9 +38,9 @@ function NavBar() {
                 <AnchorLink href='#'>ABOUT</AnchorLink>
             </HeaderLinks>
             <CartContainer>
-                <CartButton href='#'>
+                <CartButton href='#' onClick={props.onShowCart}>
                     <Span>Cart</Span>
-                    <CartCount>0</CartCount>
+                    <CartCount>{cart.length}</CartCount>
                 </CartButton>
             </CartContainer>
     </Container>

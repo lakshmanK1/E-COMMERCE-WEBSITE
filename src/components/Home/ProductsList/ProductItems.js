@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { CartContext } from '../../Store/Context';
 
 const Container = styled.div`flex:1; max-width: 900px; margin:0 auto;
 padding: 20px 30px;align-content: center; display:flex; flex-wrap: wrap;
@@ -22,6 +23,22 @@ border:none;font-size:15px;font-weight: bold;border-radius: 4%;
 background: #56CCF2;`;
 
 function ProductItems(props) {
+    const {state:{cart}, dispatch} = useContext(CartContext);
+
+    const handleAddToCart = () => {
+        return dispatch({
+            type:"ADD",
+            payload:props.data
+        });
+    }
+
+    const handleRemoveFromCart = () => {
+        return dispatch({
+            type:"REMOVE",
+            payload:props.data
+        });
+    }
+    console.log(cart);
   return (
     
     <Container>
@@ -29,7 +46,12 @@ function ProductItems(props) {
             <LI><Title>{props.data.title}</Title></LI>
             <LI><Image src={props.data.imageUrl}/></LI>
             <LI><Price>RS: {props.data.price}</Price></LI>
-            <AddBtn>ADD TO CART</AddBtn>
+
+            {
+                cart.some((p)=>p.id === props.data.id) ? (<AddBtn style={{backgroundColor:'red'}} onClick={handleRemoveFromCart}>REMOVE FROM CART</AddBtn>) 
+                : (<AddBtn onClick={handleAddToCart}>ADD TO CART</AddBtn>)
+            }
+
         </UL>
     </Container>
   )
