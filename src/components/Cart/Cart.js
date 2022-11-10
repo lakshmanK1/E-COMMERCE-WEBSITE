@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import {TiDelete} from 'react-icons/ti'
 import { CartContext } from '../Store/Context';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`margin: 0px;width:60%;position: fixed;
 top: 50px;height: 95%;right: 0;background-color: rgb(255, 255, 255);
@@ -70,9 +71,13 @@ function Cart(props) {
 
   return (
     <Container>
+
+        <Link to='/dynamicStore.html'>
         <TiDelete style={{marginLeft: '72%',height: '80px',
-    marginTop : '2%', width:'40px', cursor:'pointer'
-    }} onClick={props.onHideCart}/>
+        marginTop : '2%', width:'40px', cursor:'pointer'
+        }} onClick={props.onHideCart}/>
+        </Link>
+
         <Heading>CART</Heading>
         <SubHeads>
             <Span>ITEM</Span>
