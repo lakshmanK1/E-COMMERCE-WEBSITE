@@ -12,7 +12,7 @@ export const productsArr = [
     
     {
         id:2,
-    title: 'Black and white Colors',
+    title: 'B&W Colors',
     
     price: 50,
     
@@ -22,7 +22,7 @@ export const productsArr = [
     
     {
         id:3,
-    title: 'Yellow and Black Colors',
+    title: 'Y&B Colors',
     
     price: 70,
     

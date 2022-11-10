@@ -8,8 +8,8 @@ top: 50px;height: 95%;right: 0;background-color: rgb(255, 255, 255);
 border: 1px solid rgb(177, 103, 103);min-height: 50vh;text-align: center;
 align-content: center;justify-content: center;overflow-y: scroll;
 }`;
-const CartDetails = styled.div`padding:20px; display:flex;
-flex-wrap:wrap; justify-content:space-between;`;
+const CartDetails = styled.div`width: 60%;
+margin: auto;`;
 const Image = styled.img`width: 80px;
 height: 80px; margin-right: 15px; border-radius: 5px;`;
 const Title = styled.h3`margin-right: 0px;
@@ -40,12 +40,10 @@ font-family: 'Metal Mania';
 font-size: 25px;
 font-weight: 700;`;
 
-const UL = styled.ul`list-style: none;
-margin: 0;
-padding: 0;
-max-height: 20rem;
-overflow: auto;`;
-const LI = styled.li`list-style:none;`;
+const UL = styled.ul`display: grid;
+grid-template-columns: auto auto auto auto; grid-gap: 50px;
+padding: 5px;`;
+const LI = styled.li`list-style:none;  `;
 
 const TotalQnt = styled.span``;
 const TotalPrice = styled.span``;
@@ -59,7 +57,7 @@ cursor: pointer;
 border: none;
 border-radius: 8%;
 outline: none;
-margin-top:30px;`;
+margin-top:30px; align-items:center; justify-content:center; `;
 function Cart(props) {
     const {state:{cart},dispatch} = useContext(CartContext)
 
