@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { productsArr } from './RawData';
+import { productsArr, MerchantProducts } from './RawData';
 import { reducer } from './ReducerFunc';
 
 export const CartContext = React.createContext();
@@ -7,6 +7,7 @@ export const CartContext = React.createContext();
 function Context(props) {
     const [state, dispatch] = useReducer(reducer,{
         products:productsArr,
+        merchants: MerchantProducts,
         cart:[]
     })
   return (

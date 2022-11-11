@@ -38,19 +38,22 @@ export const productsArr = [
     
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
     
-    },
-
-    {
-        id:1,
-        title:'Colored Tshirt',
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Shirt.png',
-        price:500
-    },
-    {
-        id:2,
-        title:'coffee cup',
-        imageUrl:'https://prasadyash2411.github.io/ecom-website/img/Cofee.png',
-        price:500
     }
     
+    ]
+
+
+    export const MerchantProducts = [
+        {
+            id:5,
+            title:'Colored Tshirt',
+            imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Shirt.png',
+            price:500
+        },
+        {
+            id:6,
+            title:'coffee cup',
+            imageUrl:'https://prasadyash2411.github.io/ecom-website/img/Cofee.png',
+            price:500
+        }
     ]

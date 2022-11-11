@@ -9,7 +9,6 @@ const UL = styled.ul`list-style: none;`;
 const LI = styled.li`display:flex;
 border-bottom: 1px solid black;
 padding:10px; width:550px; `;
-const ListContainer = styled.div`margin-left:500px; `;
 
 const Span = styled.span`color:grey; margin-left:40px;`;
 const Button = styled.button`position: relative; margin-left:30px; background-color: turquoise;
@@ -21,7 +20,7 @@ function Home() {
         <CommonNavBar/>
         <HomeBanner/>
         <HeadingBanner text="Tours"/>
-        <ListContainer>
+        <center>
         <UL>
           <LI>
           JUL16<Span>DETROIT DTE ENERGY MUSIC THEATE</Span>
@@ -54,7 +53,7 @@ function Home() {
         </LI>
 
         </UL>
-        </ListContainer>
+        </center>
     </Container>
   )
 }
