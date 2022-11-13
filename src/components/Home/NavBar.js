@@ -17,6 +17,7 @@ function NavBar() {
                 <Link to='/'><AnchorLink>HOME</AnchorLink></Link>
                 <Link to='/dynamicStore.html'><AnchorLink>STORE</AnchorLink></Link>
                 <Link to='/about.html'><AnchorLink>ABOUT</AnchorLink></Link>
+                <Link to='/contactUs.html'><AnchorLink>CONTACT US</AnchorLink></Link>
             </HeaderLinks>
   );
           
