@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { CartContext } from '../../Store/Context';
 
@@ -44,7 +45,7 @@ function ProductItems(props) {
     <Container>
         <UL key={props.data.id}>
             <LI><Title>{props.data.title}</Title></LI>
-            <LI><Image src={props.data.imageUrl}/></LI>
+            <LI><Link to={`/dynamicStore.html/singleproduct/${props.data.id}`}><Image src={props.data.imageUrl}/></Link></LI>
             <LI><Price>RS: {props.data.price}</Price></LI>
 
             {

@@ -8,7 +8,7 @@ justify-content:center; margin-top: 4%;
 display: block; border:2px solid white;
 padding:1%; width:70% ;`;
 const Label = styled.label`font-weight: bold;
-margin-bottom: 0.5rem; font-weight:400;
+margin-bottom: 0.5rem; font-weight:200;
 display: block; color:white; font-size:25px;`;
 const Input = styled.input`font: inherit;
 padding: 0.5rem;

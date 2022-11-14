@@ -72,11 +72,11 @@ function Cart(props) {
   return (
     <Container>
 
-        <Link to='/dynamicStore.html'>
+       
         <TiDelete style={{marginLeft: '72%',height: '80px',
         marginTop : '2%', width:'40px', cursor:'pointer'
         }} onClick={props.onHideCart}/>
-        </Link>
+        
 
         <Heading>CART</Heading>
         <SubHeads>
@@ -86,7 +86,7 @@ function Cart(props) {
         </SubHeads>
         <CartDetails>
             {cart.map((items)=>(
-                <UL>
+                <UL key={items.id}>
                     <LI><Image src={items.imageUrl}/></LI>
                     <LI><Title>{items.title}</Title></LI>
                     <LI><Price>{items.price}</Price></LI>
@@ -109,7 +109,7 @@ function Cart(props) {
             ))}
         </CartDetails>
         <TotalQnt>Total Items: {cart.length}</TotalQnt><br/>
-        <TotalPrice>Total Price: {totalPrice}</TotalPrice><br/>
+        <TotalPrice>Total Price : Rs {totalPrice}</TotalPrice><br/>
         <PurchaseBtn>Purchase</PurchaseBtn>
     </Container>
   )

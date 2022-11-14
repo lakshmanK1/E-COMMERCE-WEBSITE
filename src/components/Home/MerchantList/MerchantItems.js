@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { CartContext } from '../../Store/Context';
 
@@ -13,7 +14,7 @@ const Title = styled.h3`font-weight:100;`;
 
 const Image = styled.img`height: 250px;width:250px;overflow: hidden;
 transform-origin: center center;object-fit: cover;transition: ease-in 0.5s;
-filter: brightness(100%);`;
+filter: brightness(100%); cursor:pointer;`;
 
 const Price = styled.span`display: flex;margin:8px;align-items: center;
 justify-content: space-between;`;
@@ -44,7 +45,7 @@ function MerchantItems(props) {
     <Container>
         <UL key={props.data.id}>
             <LI><Title>{props.data.title}</Title></LI>
-            <LI><Image src={props.data.imageUrl}/></LI>
+            <LI><Link to={`/dynamicStore.html/merchantproduct/${props.data.id}`}><Image src={props.data.imageUrl}/></Link> </LI>
             <LI><Price>RS: {props.data.price}</Price></LI>
 
             {
