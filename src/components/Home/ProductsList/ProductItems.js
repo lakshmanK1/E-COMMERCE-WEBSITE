@@ -24,21 +24,21 @@ border:none;font-size:15px;font-weight: bold;border-radius: 4%;
 background: #56CCF2;`;
 
 function ProductItems(props) {
-    const {state:{cart}, dispatch} = useContext(CartContext);
+    const {state:{cart,addItem,removeItem}} = useContext(CartContext);
 
-    const handleAddToCart = () => {
-        return dispatch({
-            type:"ADD",
-            payload:props.data
-        });
-    }
+    // const handleAddToCart = () => {
+    //     return dispatch({
+    //         type:"ADD",
+    //         payload:props.data
+    //     });
+    // }
 
-    const handleRemoveFromCart = () => {
-        return dispatch({
-            type:"REMOVE",
-            payload:props.data
-        });
-    }
+    // const handleRemoveFromCart = () => {
+    //     return dispatch({
+    //         type:"REMOVE",
+    //         payload:props.data
+    //     });
+    // }
     console.log(cart);
   return (
     
@@ -49,8 +49,8 @@ function ProductItems(props) {
             <LI><Price>RS: {props.data.price}</Price></LI>
 
             {
-                cart.some((p)=>p.id === props.data.id) ? (<AddBtn style={{backgroundColor:'red'}} onClick={handleRemoveFromCart}>REMOVE FROM CART</AddBtn>) 
-                : (<AddBtn onClick={handleAddToCart}>ADD TO CART</AddBtn>)
+                cart.some((p)=>p.id === props.data.id) ? (<AddBtn style={{backgroundColor:'red'}} onClick={()=>removeItem(props.data)}>REMOVE FROM CART</AddBtn>) 
+                : (<AddBtn onClick={()=>addItem(props.data)}>ADD TO CART</AddBtn>)
             }
 
         </UL>
