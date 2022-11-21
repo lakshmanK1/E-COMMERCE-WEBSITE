@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
+import { AuthContext } from '../../Store/AuthContext';
 import { CartContext } from '../../Store/Context';
 
 const Container = styled.div`flex:1; max-width: 900px; margin:0 auto;
@@ -25,6 +27,8 @@ background: #56CCF2;`;
 
 function ProductItems(props) {
     const {state:{cart,addItem,removeItem}} = useContext(CartContext);
+    const {AuthContextValues} = useContext(AuthContext);
+    
 
     // const handleAddToCart = () => {
     //     return dispatch({
@@ -39,6 +43,21 @@ function ProductItems(props) {
     //         payload:props.data
     //     });
     // }
+
+    const addItemHandler = (items) => {
+      addItem(items);
+
+      // axios.post(`https://crudcrud.com/api/700e54e3c38740e797b83ec4c7c6c6e8/user`,items).then((res)=>{
+      //   console.log(res);
+      // }).catch((err)=>{
+      //   console.log(err);
+      // })
+    }
+
+    const removeItemHandler = (id) => {
+      removeItem(id);
+    }
+
     console.log(cart);
   return (
     
@@ -49,8 +68,8 @@ function ProductItems(props) {
             <LI><Price>RS: {props.data.price}</Price></LI>
 
             {
-                cart.some((p)=>p.id === props.data.id) ? (<AddBtn style={{backgroundColor:'red'}} onClick={()=>removeItem(props.data)}>REMOVE FROM CART</AddBtn>) 
-                : (<AddBtn onClick={()=>addItem(props.data)}>ADD TO CART</AddBtn>)
+                cart.some((p)=>p.id === props.data.id) ? (<AddBtn style={{backgroundColor:'red'}} onClick={()=>removeItemHandler(props.data)}>REMOVE FROM CART</AddBtn>) 
+                : (<AddBtn onClick={()=>addItemHandler(props.data)}>ADD TO CART</AddBtn>)
             }
 
         </UL>

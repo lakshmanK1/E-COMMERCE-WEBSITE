@@ -9,6 +9,13 @@ import ProductsPageNavBar from '../HeaderNavs/ProductsPageNavBar';
 import Merchant from './MerchantList/Merchant';
 
 const Container = styled.div``;
+const ViewCart = styled.button`padding: 15px;
+border: 2px solid teal; background-color: white;
+cursor: pointer; font-weight: 500; margin-left:700px;
+&:hover {
+  background-color: #f8f4f4;
+}
+;`;
 
 function ProductsStore() {
     const [cartHandle, setCartHandle] = useState(false);
@@ -27,6 +34,7 @@ function ProductsStore() {
         <Banner/>
         <HeadingBanner text="MUSIC"/>
         <Products/>
+        <ViewCart onClick={showCart}>View Cart</ViewCart>
         <HeadingBanner text="Merchants"/>
         <Merchant/>
         {cartHandle &&  <Cart onHideCart={hideCart}/>} 

@@ -10,7 +10,7 @@ import MerchSingleProductPage from './components/SingleProductPages/MerchSingleP
 import LogInPage from './components/Authentication/LogInPage';
 import { AuthContext } from './components/Store/AuthContext';
 function App() {
-  const {isLoggedIn} = useContext(AuthContext)
+  const {AuthContextValues:{isLoggedIn}} = useContext(AuthContext)
   return (
     <Context>
 

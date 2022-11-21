@@ -1,6 +1,8 @@
+
 export const reducer = (state, action) => {
     switch (action.type) {
         case "ADD":
+            
             return {
                 ...state, cart:[...state.cart,{...action.payload, qty:1}]
             }
@@ -16,5 +18,7 @@ export const reducer = (state, action) => {
                     c.qty = action.payload.qty : c.qty)}    
         default:
             return state;
+     
     }
+    
 }

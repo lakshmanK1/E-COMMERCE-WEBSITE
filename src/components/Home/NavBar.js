@@ -9,7 +9,7 @@ const AnchorLink = styled.p`color: white;
 cursor: pointer; margin-right: 2rem; display:inline; text-decoration:none;`;
 
 function NavBar() {
-  const {isLoggedIn, LogOut} = useContext(AuthContext);
+  const{ AuthContextValues:{isLoggedIn, LogOut}} = useContext(AuthContext);
 
   const handleLogOut = () => {
     LogOut();
@@ -18,13 +18,13 @@ function NavBar() {
   return (
 
             <HeaderLinks>
-                <Link to='/'><AnchorLink>HOME</AnchorLink></Link>
-                {isLoggedIn ? <Link to='/dynamicStore.html'><AnchorLink>STORE</AnchorLink></Link> 
-                :<Link to='/signup&login'><AnchorLink>STORE</AnchorLink></Link> }
-                <Link to='/about.html'><AnchorLink>ABOUT</AnchorLink></Link>
-                <Link to='/contactUs.html'><AnchorLink>CONTACT US</AnchorLink></Link>
-                {!isLoggedIn && <Link to='/signup&login'><AnchorLink>LOGIN</AnchorLink></Link>}
-                {isLoggedIn && <Link to='/'><AnchorLink onClick={handleLogOut}>LOGOUT</AnchorLink></Link>}
+                <Link to='/' style={{textDecoration:'none'}}><AnchorLink>HOME</AnchorLink></Link>
+                {isLoggedIn ? <Link to='/dynamicStore.html' style={{textDecoration:'none'}}><AnchorLink>STORE</AnchorLink></Link> 
+                :<Link to='/signup&login' style={{textDecoration:'none'}}><AnchorLink>STORE</AnchorLink></Link> }
+                <Link to='/about.html' style={{textDecoration:'none'}}><AnchorLink>ABOUT</AnchorLink></Link>
+                <Link to='/contactUs.html' style={{textDecoration:'none'}}><AnchorLink>CONTACT US</AnchorLink></Link>
+                {!isLoggedIn && <Link to='/signup&login' style={{textDecoration:'none'}}><AnchorLink>LOGIN</AnchorLink></Link>}
+                {isLoggedIn && <Link to='/' style={{textDecoration:'none'}}><AnchorLink onClick={handleLogOut}>LOGOUT</AnchorLink></Link>}
             </HeaderLinks>
   );
           

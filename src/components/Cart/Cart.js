@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {TiDelete} from 'react-icons/ti'
 import { CartContext } from '../Store/Context';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Container = styled.div`margin: 0px;width:60%;position: fixed;
 top: 50px;height: 95%;right: 0;background-color: rgb(255, 255, 255);
@@ -68,6 +69,16 @@ function Cart(props) {
         setTotalPrice(cart.reduce((acc, curr) => acc + Number(curr.price)*curr.qty,0))
     },[cart])
 
+    const  onClickhandler = () => {
+        if(true){
+          Swal.fire("Thank you!", " Your order Has been Placed", "success");
+          setTimeout(()=>{
+            window.location.reload();
+          },2000);
+        }
+  
+      };
+
 
   return (
     <Container>
@@ -110,7 +121,7 @@ function Cart(props) {
         </CartDetails>
         <TotalQnt>Total Items: {cart.length}</TotalQnt><br/>
         <TotalPrice>Total Price : Rs {totalPrice}</TotalPrice><br/>
-        <PurchaseBtn>Purchase</PurchaseBtn>
+        <PurchaseBtn onClick={onClickhandler}>Purchase</PurchaseBtn>
     </Container>
   )
 }
