@@ -5,13 +5,25 @@ import ProductsStore from './components/Home/ProductsStore'
 import Home from './components/Home/Pages/Home'
 import AboutUs from './components/Home/Pages/AboutUs'
 import ContactUs from './components/Home/Pages/ContactUs';
-import SinglePageProduct from './components/SingleProductPages/SinglePageProduct';
-import MerchSingleProductPage from './components/SingleProductPages/MerchSingleProductPage';
-import LogInPage from './components/Authentication/LogInPage';
+// import SinglePageProduct from './components/SingleProductPages/SinglePageProduct';
+// import MerchSingleProductPage from './components/SingleProductPages/MerchSingleProductPage';
+// import LogInPage from './components/Authentication/LogInPage';
 import { AuthContext } from './components/Store/AuthContext';
+import { Suspense } from 'react'
+
+
+const LogInPage = React.lazy(() => import('./components/Authentication/LogInPage'));
+const SinglePageProduct = React.lazy(() => import('./components/SingleProductPages/SinglePageProduct'));
+const MerchSingleProductPage = React.lazy(() => import('./components/SingleProductPages/MerchSingleProductPage'));
+
+
 function App() {
   const {AuthContextValues:{isLoggedIn}} = useContext(AuthContext)
+
   return (
+    <Suspense fallback={
+      <center><h2>Loading...</h2></center>
+    }>
     <Context>
 
       <Routes>
@@ -26,6 +38,7 @@ function App() {
       
 
     </Context>
+    </Suspense>
   )
 }
 
