@@ -82,10 +82,7 @@ function SinglePageProduct() {
   const { title, imageUrl, price, id } = product;
 
   // For handeling Cart
-  const {
-    state: { cart },
-    dispatch,
-  } = useContext(CartContext);
+  const {state: { Cart },dispatch} = useContext(CartContext);
 
   const showCart = () => {
     setCartHandle(true);
@@ -107,7 +104,7 @@ function SinglePageProduct() {
       payload: product,
     });
   };
-  console.log(cart);
+  
 
   return (
     <Container>
@@ -154,7 +151,7 @@ function SinglePageProduct() {
           </AmountContainer>
           <Price>Rs: {price}</Price>
           <AddContainer>
-            {cart.some((p) => p.id === id) ? (
+            {Cart.some((p) => p.id === id) ? (
               <Button onClick={removeFromCart}>REMOVE FROM CART</Button>
             ) : (
               <Button onClick={addToCart}>ADD TO CART</Button>

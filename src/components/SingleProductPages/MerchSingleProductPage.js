@@ -81,7 +81,7 @@ function MerchSingleProductPage() {
   const { title, imageUrl, price, id } = product;
 
   const {
-    state: { cart },
+    state: { Cart },
     dispatch,
   } = useContext(CartContext);
 
@@ -105,7 +105,7 @@ function MerchSingleProductPage() {
       payload: product,
     });
   };
-  console.log(cart);
+  
 
   return (
     <Container>
@@ -152,7 +152,7 @@ function MerchSingleProductPage() {
           </AmountContainer>
           <Price>{price}</Price>
           <AddContainer>
-            {cart.some((p) => p.id === id) ? (
+            {Cart.some((p) => p.id === id) ? (
               <Button onClick={removeFromCart}>REMOVE FROM CART</Button>
             ) : (
               <Button onClick={addToCart}>ADD TO CART</Button>

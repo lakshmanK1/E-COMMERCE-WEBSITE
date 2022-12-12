@@ -2,10 +2,12 @@ import React, { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 
-import {LogInHandler} from '../Store/Auth-Actions'
-import {  useDispatch } from "react-redux";
 
-function LogIn() {
+import {SignUpHandler} from '../Store/Auth-Actions'
+import { useSelector, useDispatch } from "react-redux";
+import { AuthActions } from "../Store/AuthSlice";
+
+function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
 
   const userEmailRef = useRef();
@@ -14,6 +16,9 @@ function LogIn() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
+
+
 
   //Styles
   const Container = styled.div`
@@ -75,15 +80,14 @@ function LogIn() {
 
     setIsLoading(true);
 
-    dispatch(LogInHandler(enteredEmail, enteredPassword));
-    navigate('/dynamicStore.html');
-    
+    dispatch(SignUpHandler(enteredEmail, enteredPassword));
+    navigate('/login');
   };
   
   return (
     <Container>
       <h1 style={{ textAlign: "center", color: "white" }}>
-         Login
+        Signup
       </h1>
       <Form onSubmit={handleSubmitForm}>
         <Label htmlFor="emain">Email</Label>
@@ -98,12 +102,12 @@ function LogIn() {
         />
         <ButtonDiv>
           {!isLoading && (
-            <Button>Login</Button>
+            <Button>create account</Button>
           )}
           {isLoading && <p>please wait, sending data..</p>}
-          <Link to='/signup'>
+          <Link to='/login'>
           <ButtonToggle type="button">
-             create new account
+            Login with existing account
           </ButtonToggle>
           </Link>
         </ButtonDiv>
@@ -112,4 +116,4 @@ function LogIn() {
   );
 }
 
-export default LogIn;
+export default SignUp;

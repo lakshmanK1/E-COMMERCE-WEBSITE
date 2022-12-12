@@ -18,15 +18,15 @@ top: -5px;
 right:-15px;`;
 
 function CartButton(props) {
-    const {state:{cart}} = useContext(CartContext)
+    const {state:{Cart}} = useContext(CartContext)
   return (
     <CartContainer>
              <CartBtn onClick={props.enableCart}>
                     <Span>Cart</Span>
-             <CartCount>{cart.length}</CartCount>
+             <CartCount>{Cart.length}</CartCount>
               </CartBtn> 
      </CartContainer>
-  )
+  );
 }
 
 export default CartButton

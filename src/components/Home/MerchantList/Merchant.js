@@ -13,7 +13,7 @@ function Merchant() {
   return (
     <Container>
         {merchants.map((item)=>(
-            <MerchantItems data={item}/>
+            <MerchantItems data={item} key={item.id}/>
         ))}
         
     </Container>

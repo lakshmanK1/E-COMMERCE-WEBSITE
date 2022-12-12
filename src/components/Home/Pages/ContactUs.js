@@ -4,6 +4,7 @@ import Banner from '../Banner';
 import styled from 'styled-components'
 import HeadingBanner from '../HeadingBanner';
 import ContactUsForm from '../ContactUsForm';
+import Footer from '../Footer';
 
 const Container = styled.div``;
 
@@ -29,6 +30,7 @@ function ContactUs() {
         <Banner/>
         <HeadingBanner text='To Contact Us, Fill the Form.'/>
         <ContactUsForm formDetails={handleFormData}/>
+        <Footer/>
     </Container>
   )
 }

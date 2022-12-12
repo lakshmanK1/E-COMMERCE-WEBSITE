@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { CartContext } from '../../Store/Context';
 
+import {toast} from 'react-toastify'
+
 const Container = styled.div`flex:1; max-width: 900px; margin:0 auto;
 padding: 20px 30px;align-content: center; display:flex; flex-wrap: wrap;
 justify-content:space-around;`;
@@ -13,33 +15,58 @@ const LI = styled.li`list-style:none;`;
 const Title = styled.h3`font-weight:100;`;
 
 const Image = styled.img`height: 250px;width:250px;overflow: hidden;
-transform-origin: center center;object-fit: cover;transition: ease-in 0.5s;
-filter: brightness(100%); cursor:pointer;`;
+transform-origin: center center;object-fit: cover;
+filter: brightness(100%); cursor:pointer;
+:hover
+{
+  margin: 0px; overflow: inherit; transform: scale(1.1);
+  z-index: 10; font-size: 1.15vw; box-shadow: 0px 7.5px 7.5px #93AAB6;
+`;
 
 const Price = styled.span`display: flex;margin:8px;align-items: center;
 justify-content: space-between;`;
 
 const AddBtn = styled.button`cursor:pointer;padding:8px;color:white;
 border:none;font-size:15px;font-weight: bold;border-radius: 4%;
-background: #56CCF2;`;
+background: #00aadc; margin-top:8px;
+:hover
+{
+  background-color:white;
+  color: #00aadc;
+  border:2px solid #00AADC;
+  margin: 0px;
+  overflow: inherit;
+  z-index: 10;
+  font-size: 1.15vw;
+  box-shadow: 0px 7.5px 7.5px #93AAB6;
+}`;
+
+const RemoveBtn = styled.button`cursor:pointer;padding:8px;color:white;
+border:none;font-size:15px;font-weight: bold;border-radius: 4%;
+background: red;margin-top:8px;
+:hover
+{
+  background-color:white; color: red; border:2px solid red;
+  margin: 0px; overflow: inherit;
+  z-index: 10; font-size: 1.15vw; box-shadow: 0px 7.5px 7.5px #93AAB6;
+}`;
 
 function MerchantItems(props) {
-    const {state:{cart, addItem, removeItem}} = useContext(CartContext);
+    const {state:{Cart, addItem, removeItem}} = useContext(CartContext);
 
-    // const handleAddToCart = () => {
-    //     return dispatch({
-    //         type:"ADD",
-    //         payload:props.data
-    //     });
-    // }
+    const addItemHandler = (items) => {
+      addItem(items);
+      toast.success(`Added ${items.title} item to cart..`,{
+        position:'bottom-right',
+      });
+    }
 
-    // const handleRemoveFromCart = () => {
-    //     return dispatch({
-    //         type:"REMOVE",
-    //         payload:props.data
-    //     });
-    // }
-    console.log(cart);
+    const removeItemHandler = (id) => {
+      removeItem(id);
+      toast.error(`Removed ${id.title} item from cart..`,{
+        position:'bottom-right',
+      });
+    }
   return (
     
     <Container>
@@ -47,11 +74,13 @@ function MerchantItems(props) {
             <LI><Title>{props.data.title}</Title></LI>
             <LI><Link to={`/dynamicStore.html/merchantproduct/${props.data.id}`}><Image src={props.data.imageUrl}/></Link> </LI>
             <LI><Price>RS: {props.data.price}</Price></LI>
-
+ 
             {
-                cart.some((p)=>p.id === props.data.id) ? (<AddBtn style={{backgroundColor:'red'}} onClick={()=>removeItem(props.data)}>REMOVE FROM CART</AddBtn>) 
-                : (<AddBtn onClick={()=>addItem(props.data)}>ADD TO CART</AddBtn>)
-            }
+                Cart.some((p)=>p.id === props.data.id) ? (<RemoveBtn  onClick={()=>removeItemHandler(props.data)}>REMOVE FROM CART</RemoveBtn>) 
+                : (<AddBtn onClick={()=>addItemHandler(props.data)}>ADD TO CART</AddBtn>)
+            } 
+
+            {/* <AddBtn onClick={()=>addItemHandler(props.data)}>ADD TO CART</AddBtn> */}
 
         </UL>
     </Container>

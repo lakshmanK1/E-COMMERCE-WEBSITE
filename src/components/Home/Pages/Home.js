@@ -3,6 +3,7 @@ import CommonNavBar from '../../HeaderNavs/CommonNavBar'
 import HeadingBanner from '../HeadingBanner'
 import styled from 'styled-components'
 import HomeBanner from './HomeBanner'
+import Footer from '../Footer'
 
 const Container = styled.div``;
 const UL = styled.ul`list-style: none;`;
@@ -54,6 +55,7 @@ function Home() {
 
         </UL>
         </center>
+        <Footer/>
     </Container>
   )
 }

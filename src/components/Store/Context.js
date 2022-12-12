@@ -4,45 +4,41 @@ import { reducer } from './ReducerFunc';
 
 export const CartContext = React.createContext();
 
-function Context(props) { 
+function Context(props) {
 
+
+  // const [cartItems, setCartItems] = useState([]); 
 
   const handleAddToCart = (item) => {
-    return dispatch({
-        type:"ADD",
-        payload:item
-    });
+    return  dispatch({type:"ADD", payload:item})
   }
+  
   const handleRemoveFromCart = (id) => {
-        return dispatch({
-            type:"REMOVE",
-            payload:id
-        });
+     return  dispatch({type:"REMOVE",payload:id})
     }
 
     const  getCartItems = () => {
-      let LocalCartData = localStorage.getItem('products');
+      const LocalCartData = localStorage.getItem('Items');
       if(LocalCartData === []){
         return [];
       }else{
-        return JSON.parse(LocalCartData);
+        const data = JSON.parse(LocalCartData);
+        return data;
       }
     }
 
-    const [state, dispatch] = useReducer(reducer,{
-        products:productsArr,
-        merchants: MerchantProducts,
-        // cart:[],
-        cart:getCartItems(),
-        addItem: handleAddToCart,
-        removeItem: handleRemoveFromCart
-    })
+  const [state, dispatch] = useReducer(reducer,{
+    products:productsArr,
+    merchants: MerchantProducts,
+    Cart: getCartItems(),
+    addItem: handleAddToCart,
+    removeItem: handleRemoveFromCart,
+})
 
-    useEffect(()=>{
-      localStorage.setItem('products', JSON.stringify(state.cart));
-    },[state.cart]);
-
-
+useEffect(()=>{
+  localStorage.setItem('Items', JSON.stringify(state.Cart));
+},[state.Cart]);
+  
 
   return (
     <CartContext.Provider value={{state, dispatch}}>

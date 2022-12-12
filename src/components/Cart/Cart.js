@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import {TiDelete} from 'react-icons/ti'
 import { CartContext } from '../Store/Context';
-import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Container = styled.div`margin: 0px;width:60%;position: fixed;
@@ -60,14 +59,19 @@ border: none;
 border-radius: 8%;
 outline: none;
 margin-top:30px; align-items:center; justify-content:center; `;
+
 function Cart(props) {
-    const {state:{cart},dispatch} = useContext(CartContext)
+    const {state:{Cart,removeItem},dispatch} = useContext(CartContext)
 
     const [totalPrice, setTotalPrice] = useState();
 
     useEffect(()=>{
-        setTotalPrice(cart.reduce((acc, curr) => acc + Number(curr.price)*curr.qty,0))
-    },[cart])
+        setTotalPrice(Cart.reduce((acc, curr) => acc + Number(curr.price)*curr.qty,0))
+    },[Cart])
+
+    const removeItemHandler = (id) => {
+        removeItem(id);
+      }
 
     const  onClickhandler = () => {
         if(true){
@@ -96,7 +100,7 @@ function Cart(props) {
             <Span>Quantity</Span>
         </SubHeads>
         <CartDetails>
-            {cart.map((items)=>(
+            {Cart.map((items)=>(
                 <UL key={items.id}>
                     <LI><Image src={items.imageUrl}/></LI>
                     <LI><Title>{items.title}</Title></LI>
@@ -110,16 +114,11 @@ function Cart(props) {
                         }
                     })
                 }/></LI>
-                    <RemoveBtn onClick={()=>{
-                        dispatch({
-                            type:"REMOVE",
-                            payload:items
-                        });
-                    }}>REMOVE</RemoveBtn>
+                    <RemoveBtn onClick={()=>removeItemHandler(items)}>REMOVE</RemoveBtn>
                 </UL>
             ))}
         </CartDetails>
-        <TotalQnt>Total Items: {cart.length}</TotalQnt><br/>
+        <TotalQnt>Total Items: {Cart.length}</TotalQnt><br/>
         <TotalPrice>Total Price : Rs {totalPrice}</TotalPrice><br/>
         <PurchaseBtn onClick={onClickhandler}>Purchase</PurchaseBtn>
     </Container>
