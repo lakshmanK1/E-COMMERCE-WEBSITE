@@ -6,11 +6,12 @@ export const CartContext = React.createContext();
 
 function Context(props) {
 
+  const [cartItems, setCartItems] = useState([]);
 
-  // const [cartItems, setCartItems] = useState([]); 
+  // const enteredEmail = localStorage.getItem('email').replace(/[@.]/g, "");
 
   const handleAddToCart = (item) => {
-    return  dispatch({type:"ADD", payload:item})
+   return dispatch({type:"ADD", payload:item});
   }
   
   const handleRemoveFromCart = (id) => {

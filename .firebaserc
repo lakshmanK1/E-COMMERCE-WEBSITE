@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "ecommerce-website-data"
-  }
+    "default": "ecommerce-site-533fb",
+    "development": "ecommerce-site-533fb"
+  },
+  "targets": {},
+  "etags": {}
 }

@@ -1,19 +1,20 @@
 import React, { useContext, useRef, useState } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-
-import {LogInHandler} from '../Store/Auth-Actions'
-import {  useDispatch } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Store/AuthContext";
 function LogIn() {
+  const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const {AuthContextValues: { LogIn }} = useContext(AuthContext);
 
   const userEmailRef = useRef();
   const userPasswordRef = useRef();
 
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
+  const switchAuthModeHandler = () => {
+    setIsLogin((prevState) => !prevState);
+  };
 
   //Styles
   const Container = styled.div`
@@ -74,16 +75,52 @@ function LogIn() {
     const enteredPassword = userPasswordRef.current.value;
 
     setIsLoading(true);
-
-    dispatch(LogInHandler(enteredEmail, enteredPassword));
-    navigate('/dynamicStore.html');
-    
+    let url;
+    if (isLogin) {
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDq1S9QbSJjke7R6kS9kYC5WQFjmf5Jt6k";
+    } else {
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDq1S9QbSJjke7R6kS9kYC5WQFjmf5Jt6k";
+    }
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        setIsLoading(false);
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            console.log(data);
+            if (data && data.error && data.error.message) {
+              let errorMsg = "Authentication failed" + data.error.message;
+              throw new Error(errorMsg);
+            }
+          });
+        }
+      })
+      .then((data) => {
+        LogIn(data.idToken);
+        localStorage.setItem('email',data.email);
+        navigate("/dynamicStore.html");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
-  
   return (
     <Container>
       <h1 style={{ textAlign: "center", color: "white" }}>
-         Login
+        {isLogin ? "Login" : "Signup"}
       </h1>
       <Form onSubmit={handleSubmitForm}>
         <Label htmlFor="emain">Email</Label>
@@ -98,14 +135,12 @@ function LogIn() {
         />
         <ButtonDiv>
           {!isLoading && (
-            <Button>Login</Button>
+            <Button>{isLogin ? "Login" : "create account"}</Button>
           )}
           {isLoading && <p>please wait, sending data..</p>}
-          <Link to='/signup'>
-          <ButtonToggle type="button">
-             create new account
+          <ButtonToggle type="button" onClick={switchAuthModeHandler}>
+            {isLogin ? "create new account" : "Login with existing account"}
           </ButtonToggle>
-          </Link>
         </ButtonDiv>
       </Form>
     </Container>

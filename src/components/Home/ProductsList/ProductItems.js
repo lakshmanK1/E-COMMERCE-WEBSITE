@@ -54,7 +54,6 @@ background: red;margin-top:8px;
 
 function ProductItems(props) {
     const {state:{Cart,addItem,removeItem}} = useContext(CartContext);
-    const [cart, setCart] = useState([]);
 
     const enteredEmail = localStorage.getItem('email').replace('@','').replace('.','');
     
@@ -62,7 +61,7 @@ function ProductItems(props) {
 
     //   async function addHandler(NewMovieObj) {
     //     const response = await fetch(
-    //       `https://ecommerce-website-data-default-rtdb.firebaseio.com/${enteredEmail}.json`,
+    //       `https://ecommerce-site-533fb-default-rtdb.firebaseio.com/ProductItems/${enteredEmail}.json`,
     //       {
     //         method: "POST",
     //         body: JSON.stringify(NewMovieObj),
@@ -72,12 +71,11 @@ function ProductItems(props) {
     //       }
     //     );
     //     const data = await response.json();
-    //     updatedItem = [...updatedItem, data];
-    //     cartCtx.addItem({ item: updatedItem, totalAmount: updatedAmount });
     //   }
     // addHandler(items);
 
     addItem(items);
+    
 
       toast.success(`Added ${items.title} item to cart..`,{
         position:'bottom-right',
@@ -88,7 +86,7 @@ function ProductItems(props) {
     // const fetchDataHandler = useCallback(async () => {
     //   try {
     //     const response = await fetch(
-    //       `https://crudcrud.com/api/d1652275928c4f6688ac68c1ae7a31bb/${enteredEmail}`
+    //       `https://ecommerce-site-533fb-default-rtdb.firebaseio.com/ProductItems/${enteredEmail}.json`
     //     );
   
     //     if (!response.ok) {
@@ -102,7 +100,7 @@ function ProductItems(props) {
   
     //     for (const key in data) {
     //       transformedData.push({
-    //         _id: key,
+    //         id: key,
     //         title: data[key].title,
     //         price: data[key].price,
     //         imageUrl: data[key].imageUrl

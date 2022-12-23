@@ -11,7 +11,7 @@ const Container = styled.div``;
 function ContactUs() {
 
     async function handleFormData (formDetails) {
-        const response = await fetch('https://ecommerce-website-data-default-rtdb.firebaseio.com/formdata.json',{
+        const response = await fetch('https://ecommerce-site-533fb-default-rtdb.firebaseio.com/formdata.json',{
             method:"POST",
             body:JSON.stringify(formDetails),
             headers:{
